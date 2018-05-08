@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/telaPrincpial"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/tela_principal"
+    tools:context="com.example.italo.gestante.MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/titulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="200dp"
+                android:text="@string/titulo"
+                android:textAlignment="center"
+                android:textColor="@color/branca"
+                android:textSize="35dp" />
+
+            <TextView
+                android:id="@+id/linkCadastro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/titulo"
+                android:layout_marginTop="5dp"
+                android:text="@string/cad"
+                android:textAlignment="center"
+                android:textColor="@color/branca" />
+
+            <Button
+                android:id="@+id/btnCadastrar"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linkCadastro"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/btn_custon"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="@string/btnCad"
+                android:textColor="@color/branca" />
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/stl_login"
+                style="@style/MyCustomTabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btnCadastrar"
+                android:padding="10dp"
+                app:tabGravity="fill"
+                app:tabMaxWidth="0dp"
+                app:tabMode="fixed">
+
+            </android.support.design.widget.TabLayout>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vp_login"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/stl_login"
+                android:padding="10dp">
+
+            </android.support.v4.view.ViewPager>
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

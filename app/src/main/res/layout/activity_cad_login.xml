@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context="com.example.italo.gestante.Cad_login">
+
+    <include android:id="@+id/toolbar"
+        layout="@layout/toolbrar"/>
+    <ScrollView
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:padding="20dp">
+
+                <TextView
+                    android:id="@+id/teste0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="@string/teste"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/teste1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/teste0"
+                    android:text="@string/teste1"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/teste2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/teste1"
+                    android:text="@string/teste2"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/teste3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/teste2"
+                    android:text="@string/teste3"
+                    android:textColor="@android:color/black" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgFoto"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_below="@+id/teste3"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="21dp"
+                    android:src="@drawable/gestanteft" />
+
+                <ImageView
+                    android:id="@+id/btncamera"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_above="@+id/emaillogin"
+                    android:layout_alignStart="@+id/imgFoto"
+                    android:layout_marginStart="78dp"
+                    android:src="@drawable/btncam" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/emaillogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_below="@+id/imgFoto"
+                    android:layout_marginTop="10dp"
+                    android:textColorHint="@android:color/black"
+                    android:theme="@style/MyCustomLabelText"
+                    app:hintTextAppearance="@style/MyCustomLabelText">
+
+                    <EditText
+                        android:id="@+id/email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/black"
+                        android:hint="@string/email"
+                        android:inputType="textPersonName"
+                        android:textColor="@android:color/black" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/senhaLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_below="@+id/emaillogin"
+                    android:layout_marginTop="10dp"
+                    android:textColorHint="@android:color/black"
+                    android:theme="@style/MyCustomLabelText"
+                    app:hintTextAppearance="@style/MyCustomLabelText">
+
+                    <EditText
+                        android:id="@+id/senha"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/black"
+                        android:hint="@string/novSenha"
+                        android:inputType="textPassword"
+                        android:textColor="@android:color/black" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
