@@ -2,6 +2,7 @@ package com.example.italo.gestante;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -16,7 +17,7 @@ import com.example.italo.gestante.R;
 
 
 public class Menu extends Fragment {
-        ImageView imgconsult,imgsiringa;
+        ImageView imgconsult,imgsiringa,imgChat;
 
 
     public Menu() {
@@ -33,6 +34,15 @@ public class Menu extends Fragment {
 
         imgconsult = (ImageView)v.findViewById(R.id.imgClipBoard);
         imgsiringa = (ImageView)v.findViewById(R.id.imgsiringa);
+        imgChat = (ImageView)v.findViewById(R.id.imgChat);
+
+        imgChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "tela chat", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getActivity(),ChatTab.class));
+            }
+        });
 
        imgconsult.setOnClickListener(new View.OnClickListener() {
            @Override
