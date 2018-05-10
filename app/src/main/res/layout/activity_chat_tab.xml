@@ -14,7 +14,7 @@
 
     <com.ogaclejapan.smarttablayout.SmartTabLayout
         android:layout_below="@+id/toolbarchat"
-        android:background="@color/btn_cad"
+        android:background="@color/roxolight"
         android:id="@+id/viewPagerTab"
         android:layout_width="match_parent"
         android:layout_height="48dp"

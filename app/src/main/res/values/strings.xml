@@ -22,7 +22,7 @@
     <string name="camera">Foto</string>
     <string name="reg_medico">Registro Medico</string>
     <string name="frase_reset">Informe seu E-mail para redefinir sua senha.</string>
-    <string name="reset_senha">Redefinnir Senha</string>
+    <string name="reset_senha">Enviar E-mail</string>
     <string name="email">E-mail</string>
     <string name="crm">CRM</string>
     <string name="nasc">Data Nascimento</string>
@@ -100,8 +100,8 @@
     </string>
     <string name="aceita_termo">Aceito termos de uso</string>
     <string name="concluir">Concluir</string>
-    <string name="psw_sucess">Senha alterado com sucesso</string>
-    <string name="psw_negative">Senha não pode ser alterada</string>
+    <string name="psw_sucess">E-mail enviado com sucesso</string>
+    <string name="psw_negative">E-mail errado ou não cadastrado</string>
     <string name="chat">Chat</string>
     <string name="location_hospital">Localização Hospital</string>
     <string name="agendar_consulta">Agendar consulta</string>

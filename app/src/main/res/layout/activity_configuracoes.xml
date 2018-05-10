@@ -66,7 +66,8 @@
         android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@+id/circleImagePerfil"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="64dp">
+        tools:layout_editor_absoluteX="64dp"
+        android:padding="10dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -119,7 +120,7 @@
                 android:layout_height="60dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignTop="@+id/data_nasc"
-                android:layout_marginEnd="19dp"
+                android:layout_marginEnd="9dp"
                 android:textColorHint="#fff">
 
                 <EditText
@@ -192,6 +193,14 @@
                     android:textColor="@android:color/white" />
 
             </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_alterGestante"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cel"
+                android:text="@string/salvar"
+                android:background="@drawable/btn_verde"/>
 
 
         </RelativeLayout>

@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -25,6 +26,8 @@ import com.example.italo.gestante.helper.Base64Custom;
 import com.example.italo.gestante.helper.Permissao;
 import com.example.italo.gestante.helper.UsuarioFireBase;
 import com.example.italo.gestante.model.GestanteUser;
+import com.github.rtoshiro.util.format.SimpleMaskFormatter;
+import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -52,8 +55,9 @@ public class activity_configuracoes extends AppCompatActivity {
 
     private ImageButton imgbtCamera, imgbtGaleria;
     private CircleImageView imgPerfil;
-    private EditText edtNome,edtNum,edtNasc,edtIdade;
-    private Spinner spnSangue;
+    private EditText edtNome, edtNum, edtNasc, edtIdade;
+    private Spinner spnSangue; //ver com recupera dados do spinner
+    private Button btnSalvar;
     private StorageReference storageReference;
     private String identUser;
 
@@ -74,6 +78,17 @@ public class activity_configuracoes extends AppCompatActivity {
         edtIdade = (EditText) findViewById(R.id.idade);
         spnSangue = (Spinner) findViewById(R.id.sangue);
 
+        btnSalvar = (Button) findViewById(R.id.btn_alterGestante);
+
+        //mascaras
+        SimpleMaskFormatter fmDataNasc = new SimpleMaskFormatter("NN/NN/NNNN");
+        MaskTextWatcher maskData = new MaskTextWatcher(edtNasc, fmDataNasc);
+        edtNasc.addTextChangedListener(maskData);
+
+        SimpleMaskFormatter fmNumCel = new SimpleMaskFormatter("(NN) N NNNN-NNNN");
+        MaskTextWatcher maskCel = new MaskTextWatcher(edtNum, fmNumCel);
+        edtNum.addTextChangedListener(maskCel);
+
         //referencia storege
         storageReference = ConfigFireBase.getFirebaseStorage();
         identUser = UsuarioFireBase.getIdentificadorUsuario();
@@ -90,35 +105,15 @@ public class activity_configuracoes extends AppCompatActivity {
         FirebaseUser usuario = UsuarioFireBase.getUserAtual();
         Uri url = usuario.getPhotoUrl();
 
-        if (url !=null){
+        if (url != null) {
             Glide.with(activity_configuracoes.this).load(url).into(imgPerfil);
-        }else{
+        } else {
             imgPerfil.setImageResource(R.drawable.gestanteft);
         }
 
         edtNome.setText(usuario.getDisplayName());
-        GestanteUser recup = new GestanteUser();
 
-        DatabaseReference userGestante = ConfigFireBase.getFirebase();
-        DatabaseReference gestante = userGestante.child("usuarios").child(UsuarioFireBase.getIdentificadorUsuario());
-
-        gestante.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                GestanteUser gtUser = dataSnapshot.getValue(GestanteUser.class);
-                //Log.i("Firebase",dataSnapshot.getValue().toString());
-                edtNum.setText(gtUser.getCelular());
-                edtIdade.setText(gtUser.getIdade());
-                edtNasc.setText(gtUser.getDataNAsc());
-
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+        pegandoDadosFireBase();
 
 
         imgbtCamera.setOnClickListener(new View.OnClickListener() {
@@ -141,8 +136,54 @@ public class activity_configuracoes extends AppCompatActivity {
             }
         });
 
+        btnSalvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                salvandoDadosFireBase();
+            }
+        });
+
         //validar permisoes
         Permissao.validarPermission(permissoesNecessarias, this, 1);
+    }
+
+    public void pegandoDadosFireBase() {
+        DatabaseReference userGestante = ConfigFireBase.getFirebase();
+        DatabaseReference gestante = userGestante.child("usuarios").child(UsuarioFireBase.getIdentificadorUsuario());
+
+        gestante.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                GestanteUser gtUser = dataSnapshot.getValue(GestanteUser.class);
+                //Log.i("Firebase",dataSnapshot.getValue().toString());
+                edtNum.setText(gtUser.getCelular());
+                edtIdade.setText(gtUser.getIdade());
+                edtNasc.setText(gtUser.getDataNAsc());
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public void salvandoDadosFireBase() {
+
+        /*
+        DatabaseReference userGestante = ConfigFireBase.getFirebase();
+
+        DatabaseReference gestante = userGestante.child("usuarios");
+
+        GestanteUser userSave = new GestanteUser();
+        userSave.getCelular();
+
+        gestante.child(UsuarioFireBase.getIdentificadorUsuario()).setValue(userSave);
+        */
+
+
     }
 
     @Override
@@ -166,14 +207,14 @@ public class activity_configuracoes extends AppCompatActivity {
 
                     //recuperar img FireBase
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    imagem.compress(Bitmap.CompressFormat.JPEG,70,baos);
+                    imagem.compress(Bitmap.CompressFormat.JPEG, 70, baos);
                     byte[] dadosImagem = baos.toByteArray();
                     //salvar img firebase
                     StorageReference imgRef = storageReference
                             .child("imagens")
                             .child("perfil")
                             //.child(identUser)
-                            .child(identUser +".jpeg");
+                            .child(identUser + ".jpeg");
 
                     UploadTask uploadTask = imgRef.putBytes(dadosImagem);
                     uploadTask.addOnFailureListener(new OnFailureListener() {
@@ -201,7 +242,7 @@ public class activity_configuracoes extends AppCompatActivity {
 
     }
 
-    public void atualizaFotouser(Uri url){
+    public void atualizaFotouser(Uri url) {
 
         UsuarioFireBase.atualizarFotoUser(url);
     }

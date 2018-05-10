@@ -183,7 +183,6 @@ public class Dados_Pessoais_Gestante extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             //uploadIamge();
                             Toast.makeText(Dados_Pessoais_Gestante.this, "Sucesso ao cadastra dados", Toast.LENGTH_LONG).show();
-                           // UsuarioFireBase.atualizarNomeUser(gestanteCad.getNomeC(),gestanteCad.getDataNAsc(),gestanteCad.getSexo(),gestanteCad.getIdade(),gestanteCad.getSangue(),gestanteCad.getCelular());
                             UsuarioFireBase.atualizarNomeUser(gestanteCad.getNomeC());
                             finish();
                             try {
