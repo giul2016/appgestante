@@ -20,6 +20,8 @@ import android.widget.Toast;
 
 import com.example.italo.gestante.R;
 import com.example.italo.gestante.config.ConfigFireBase;
+import com.example.italo.gestante.helper.Base64Custom;
+import com.example.italo.gestante.helper.UsuarioFireBase;
 import com.example.italo.gestante.model.GestanteUser;
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
@@ -169,7 +171,7 @@ public class Dados_Pessoais_Gestante extends AppCompatActivity {
 
 
     //Firebase
-    private void cadastroGestante(GestanteUser gestanteCad) {
+    private void cadastroGestante(final GestanteUser gestanteCad) {
 
         autentic = ConfigFireBase.getFireBaseAutenticacao();
         autentic.createUserWithEmailAndPassword(
@@ -181,7 +183,16 @@ public class Dados_Pessoais_Gestante extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             //uploadIamge();
                             Toast.makeText(Dados_Pessoais_Gestante.this, "Sucesso ao cadastra dados", Toast.LENGTH_LONG).show();
+                           // UsuarioFireBase.atualizarNomeUser(gestanteCad.getNomeC(),gestanteCad.getDataNAsc(),gestanteCad.getSexo(),gestanteCad.getIdade(),gestanteCad.getSangue(),gestanteCad.getCelular());
+                            UsuarioFireBase.atualizarNomeUser(gestanteCad.getNomeC());
                             finish();
+                            try {
+                                String identificadorUser = Base64Custom.codificarBase64(gestanteCad.getEmail());
+                                gestanteCad.setId(identificadorUser);
+                                gestanteCad.salvar();
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
                             Intent intent = new Intent(Dados_Pessoais_Gestante.this, MainActivity.class);
                             startActivity(intent);
                             //FirebaseUser userFire = task.getResult().getUser();

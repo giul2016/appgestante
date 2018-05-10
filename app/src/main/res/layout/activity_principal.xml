@@ -11,7 +11,8 @@
         android:id="@+id/toolbarPrincipal"
         layout="@layout/toollbar_principal"
         android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/idade" />
+        android:layout_alignTop="@+id/idade"
+        tools:ignore="IncludeLayoutParam" />
 
     <ImageView
         android:id="@+id/imgFundo"
@@ -23,23 +24,26 @@
         android:src="@drawable/fundo" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/img"
+        android:id="@+id/imgPerfil"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="63dp"
+        app:civ_border_color="@color/white"
+        app:civ_border_width="2dp"
         android:src="@drawable/pregnancy" />
    <TextView
+       android:id="@+id/txtNome_fire"
        android:layout_marginTop="5dp"
-       android:layout_below="@+id/img"
+       android:layout_below="@+id/imgPerfil"
        android:textColor="@android:color/black"
        android:textAlignment="center"
        android:textStyle="bold"
        android:textSize="15sp"
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       android:text="@string/nome_pessoa"/>
+       android:text=""/>
 
     <TextView
         android:id="@+id/idade"
@@ -54,15 +58,16 @@
         android:textColor="@android:color/black"
         android:textStyle="bold" />
    <TextView
+       android:id="@+id/txtidade_fire"
        android:layout_marginTop="5sp"
        android:layout_below="@+id/idade"
        android:layout_marginLeft="120dp"
-       android:layout_alignLeft="@+id/img"
+       android:layout_alignLeft="@+id/imgPerfil"
        android:textColor="@android:color/black"
        android:textAlignment="center"
        android:layout_width="100dp"
        android:layout_height="wrap_content"
-       android:text="@string/_33_anos"/>
+       android:text=""/>
 
     <TextView
         android:id="@+id/sangue"
@@ -76,6 +81,7 @@
         android:textColor="@android:color/black"
         android:textStyle="bold" />
    <TextView
+       android:id="@+id/txtSangue_fire"
        android:layout_marginTop="5sp"
        android:layout_below="@+id/sangue"
        android:layout_marginLeft="20dp"
@@ -84,7 +90,7 @@
        android:textAlignment="center"
        android:layout_width="100dp"
        android:layout_height="wrap_content"
-       android:text="@string/tipo_sangue"
+       android:text=""
        android:textStyle="bold"
        android:textSize="20sp"/>
    <LinearLayout

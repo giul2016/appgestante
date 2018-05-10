@@ -1,8 +1,14 @@
 package com.example.italo.gestante.model;
 
+import android.util.Log;
+
 import com.example.italo.gestante.config.ConfigFireBase;
+import com.example.italo.gestante.helper.UsuarioFireBase;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -27,8 +33,8 @@ public class GestanteUser {
 
     public void salvar(){
         DatabaseReference referenciaFireBase = ConfigFireBase.getFirebase();
-        referenciaFireBase.child("usuario").child(getId()).setValue(this);
-
+        DatabaseReference user = referenciaFireBase.child("usuarios").child(getId());
+        user.setValue(this);
     }
     @Exclude
     public String getId() {
@@ -94,7 +100,7 @@ public class GestanteUser {
     public void setEmail(String email) {
         this.email = email;
     }
-
+    @Exclude
     public String getSenha() {
         return senha;
     }

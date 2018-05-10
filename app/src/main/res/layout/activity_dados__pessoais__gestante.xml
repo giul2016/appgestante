@@ -29,7 +29,6 @@
                 android:id="@+id/nome_completo"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_below="@+id/imgFoto"
                 android:textColorHint="#cccccc">
 
                 <EditText
@@ -128,7 +127,6 @@
                 android:backgroundTint="@color/branca"
                 android:entries="@array/tiposangue"
                 android:inputType="textPersonName"
-                android:text="Feminino"
                 android:textColor="@color/branca" />
 
 

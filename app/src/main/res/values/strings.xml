@@ -137,4 +137,5 @@
     <string name="msg_erro_cpf">CPF esta incorreta ou incompleta</string>
     <string name="msg_erro_celular">Celualr esta incorreta ou incompleta</string>
     <string name="salvar">Salvar</string>
+    <string name="ultimo_ciclo">ultimo ciclo</string>
 </resources>
