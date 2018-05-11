@@ -35,6 +35,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -42,6 +43,8 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -139,7 +142,7 @@ public class activity_configuracoes extends AppCompatActivity {
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                salvandoDadosFireBase();
+                updadteDadosFireBase();
             }
         });
 
@@ -170,17 +173,14 @@ public class activity_configuracoes extends AppCompatActivity {
         });
     }
 
-    public void salvandoDadosFireBase() {
+    public void updadteDadosFireBase() {
+
 
         /*
         DatabaseReference userGestante = ConfigFireBase.getFirebase();
 
-        DatabaseReference gestante = userGestante.child("usuarios");
+        DatabaseReference gestante = userGestante.child("usuarios").child(UsuarioFireBase.getIdentificadorUsuario());
 
-        GestanteUser userSave = new GestanteUser();
-        userSave.getCelular();
-
-        gestante.child(UsuarioFireBase.getIdentificadorUsuario()).setValue(userSave);
         */
 
 

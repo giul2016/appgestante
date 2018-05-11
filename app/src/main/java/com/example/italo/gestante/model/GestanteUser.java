@@ -36,6 +36,8 @@ public class GestanteUser {
         DatabaseReference user = referenciaFireBase.child("usuarios").child(getId());
         user.setValue(this);
     }
+
+
     @Exclude
     public String getId() {
         return id;
