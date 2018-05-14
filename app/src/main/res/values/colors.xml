@@ -3,7 +3,7 @@
     <color name="colorPrimary">#0b4396</color>
     <color name="toobar">#24000000</color>
     <color name="colorPrimaryDark">#000</color>
-    <color name="colorAccent">#186B00</color>
+    <color name="colorAccent">#186b00</color>
     <color name="branca">#fff</color>
     <color name="btn_cad">#004E8A</color>
     <color name="btn_fechar">#AC0303</color>
@@ -14,4 +14,6 @@
     <color name="btnwifi">#ff669900</color>
     <color name="roxoDark">#6A1B9A</color>
     <color name="roxolight">#7B1FA2</color>
+    <color name="grayPerson">#1c7c7c7c</color>
+    <color name="balaoRemetente">#dbf9c4</color>
 </resources>

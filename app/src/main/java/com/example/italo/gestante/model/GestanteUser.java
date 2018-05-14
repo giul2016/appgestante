@@ -14,6 +14,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,7 +22,7 @@ import java.util.Map;
  * Created by italo on 04/01/2018.
  */
 
-public class GestanteUser {
+public class GestanteUser implements Serializable{
     private String id;
     private String nomeC;
     private String dataNAsc;

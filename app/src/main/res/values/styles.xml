@@ -74,5 +74,16 @@
         <item name="colorAccent">@color/btnwifi</item>
 
     </style>
+    //EditText chat
+    <style name="StyledTilEditTextTheme">
+        <item name="colorControlNormal">@android:color/black</item> // Cor padrão da linha
+        <item name="colorControlActivated">@color/colorAccent</item> // Cor linha e texto quando recebe foco
+    </style>
+
+    <style name="StyledTilEditText">
+        <item name="android:theme">@style/StyledTilEditTextTheme</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:textColorHint">@android:color/darker_gray</item> // Cor texto(hint) sem foco
+    </style>
 
 </resources>
