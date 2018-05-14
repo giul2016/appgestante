@@ -58,11 +58,12 @@ public class activity_configuracoes extends AppCompatActivity {
 
     private ImageButton imgbtCamera, imgbtGaleria;
     private CircleImageView imgPerfil;
-    private EditText edtNome, edtNum, edtNasc, edtIdade;
+    private EditText edtNome, edtNum, edtNasc, edtIdade,edtCiclo;
     private Spinner spnSangue; //ver com recupera dados do spinner
     private Button btnSalvar;
     private StorageReference storageReference;
     private String identUser;
+    private GestanteUser userLogado;
 
     private static final int selecao_camera = 100;
     private static final int selecao_galeria = 200;
@@ -72,6 +73,8 @@ public class activity_configuracoes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configuracoes);
 
+        userLogado = UsuarioFireBase.getDadosUserLogado();
+
         imgbtCamera = (ImageButton) findViewById(R.id.imgButtonCamera);
         imgbtGaleria = (ImageButton) findViewById(R.id.imgButtonGaleria);
         imgPerfil = (CircleImageView) findViewById(R.id.circleImagePerfil);
@@ -79,6 +82,7 @@ public class activity_configuracoes extends AppCompatActivity {
         edtNum = (EditText) findViewById(R.id.numCelular);
         edtNasc = (EditText) findViewById(R.id.data_nasci);
         edtIdade = (EditText) findViewById(R.id.idade);
+        edtCiclo = (EditText) findViewById(R.id.data_ciclo);
         spnSangue = (Spinner) findViewById(R.id.sangue);
 
         btnSalvar = (Button) findViewById(R.id.btn_alterGestante);
@@ -87,6 +91,10 @@ public class activity_configuracoes extends AppCompatActivity {
         SimpleMaskFormatter fmDataNasc = new SimpleMaskFormatter("NN/NN/NNNN");
         MaskTextWatcher maskData = new MaskTextWatcher(edtNasc, fmDataNasc);
         edtNasc.addTextChangedListener(maskData);
+
+        SimpleMaskFormatter fmDataCiclo = new SimpleMaskFormatter("NN/NN/NNNN");
+        MaskTextWatcher maskDataCiclo = new MaskTextWatcher(edtCiclo, fmDataCiclo);
+        edtCiclo.addTextChangedListener(maskDataCiclo);
 
         SimpleMaskFormatter fmNumCel = new SimpleMaskFormatter("(NN) N NNNN-NNNN");
         MaskTextWatcher maskCel = new MaskTextWatcher(edtNum, fmNumCel);
@@ -105,7 +113,7 @@ public class activity_configuracoes extends AppCompatActivity {
         //FIM TOOLBAR;
 
         //recuperar dados usuario
-        FirebaseUser usuario = UsuarioFireBase.getUserAtual();
+        final FirebaseUser usuario = UsuarioFireBase.getUserAtual();
         Uri url = usuario.getPhotoUrl();
 
         if (url != null) {
@@ -142,7 +150,27 @@ public class activity_configuracoes extends AppCompatActivity {
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updadteDadosFireBase();
+                String nome = edtNome.getText().toString();
+                String celular =  edtNum.getText().toString();
+                String idade =  edtIdade.getText().toString();
+                String data =  edtNasc.getText().toString();
+                String nascimentoBB = edtCiclo.getText().toString();
+
+                boolean retorno = UsuarioFireBase.atualizarNomeUser(nome);
+                if (retorno){
+                    userLogado.setNomeC(nome);
+                    userLogado.setCelular(celular);
+                    userLogado.setIdade(idade);
+                    userLogado.setDataNAsc(data);
+                    userLogado.setDataNascimentoBB(nascimentoBB);
+
+                    userLogado.updadteDadosFireBase();
+
+                    Toast.makeText(activity_configuracoes.this, "Dados atualizados com sucesso", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(activity_configuracoes.this, "Dados não foram atualizados", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
@@ -163,7 +191,6 @@ public class activity_configuracoes extends AppCompatActivity {
                 edtIdade.setText(gtUser.getIdade());
                 edtNasc.setText(gtUser.getDataNAsc());
 
-
             }
 
             @Override
@@ -173,18 +200,7 @@ public class activity_configuracoes extends AppCompatActivity {
         });
     }
 
-    public void updadteDadosFireBase() {
 
-
-        /*
-        DatabaseReference userGestante = ConfigFireBase.getFirebase();
-
-        DatabaseReference gestante = userGestante.child("usuarios").child(UsuarioFireBase.getIdentificadorUsuario());
-
-        */
-
-
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -225,7 +241,7 @@ public class activity_configuracoes extends AppCompatActivity {
                     }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Toast.makeText(activity_configuracoes.this, "Imagem salva com sucesso", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(activity_configuracoes.this, "Imagem salva com sucesso", Toast.LENGTH_SHORT).show();
 
                             Uri url = taskSnapshot.getDownloadUrl();
                             atualizaFotouser(url);
@@ -244,7 +260,15 @@ public class activity_configuracoes extends AppCompatActivity {
 
     public void atualizaFotouser(Uri url) {
 
-        UsuarioFireBase.atualizarFotoUser(url);
+        boolean retorno = UsuarioFireBase.atualizarFotoUser(url);
+        if (retorno){
+            userLogado.setFoto(url.toString());
+            userLogado.updadteDadosFireBase();
+            Toast.makeText(this, "sua foto foi alterada", Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(this, "sua foto não foi alterada", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override

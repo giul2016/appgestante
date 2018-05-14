@@ -7,12 +7,11 @@
     tools:context=".fragment.ContatoFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycleViewContato"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Contato"
-        android:gravity="center"
-        android:textColor="@android:color/black"
-        android:textSize="30pt"/>
-
+        android:orientation="vertical"/>
 </FrameLayout>

@@ -151,19 +151,6 @@ public class Dados_Pessoais_Gestante extends AppCompatActivity {
                 }else{
                     Toast.makeText(Dados_Pessoais_Gestante.this, "Preencha o  campo Nome", Toast.LENGTH_SHORT).show();
                 }
-
-                /*
-                userGestante = new GestanteUser();
-                userGestante.setNomeC(nomeCompleto.getText().toString());
-                userGestante.setDataNAsc(datnasc.getText().toString());
-                userGestante.setSexo(sexo.getText().toString());
-                userGestante.setCelular(numCel.getText().toString());
-                userGestante.setIdade(idade.getText().toString());
-                userGestante.setSangue(tipoSangue.getSelectedItem().toString());
-                userGestante.setEmail(email.getText().toString());
-                userGestante.setSenha(senha.getText().toString());
-                cadastroGestante();
-                */
             }
         });
     }
@@ -195,9 +182,7 @@ public class Dados_Pessoais_Gestante extends AppCompatActivity {
                             Intent intent = new Intent(Dados_Pessoais_Gestante.this, MainActivity.class);
                             startActivity(intent);
                             //FirebaseUser userFire = task.getResult().getUser();
-                            //userGestante.setId(userFire.getUid());
-                            //userGestante.salvar();
-                            //autentic.signOut();
+
                         } else {
                             String erroExcecao =" ";
                             try{

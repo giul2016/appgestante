@@ -138,4 +138,5 @@
     <string name="msg_erro_celular">Celualr esta incorreta ou incompleta</string>
     <string name="salvar">Salvar</string>
     <string name="ultimo_ciclo">ultimo ciclo</string>
+    <string name="title_activity_chat">ChatActivity</string>
 </resources>

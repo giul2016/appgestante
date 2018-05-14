@@ -16,6 +16,7 @@
         <item name="android:itemBackground">@android:color/white</item>
         <item name="android:textColor">@android:color/black</item>
     </style>
+
     <style name="MyCustomTabLayoutPrincipal" parent="Widget.Design.TabLayout">
         <item name="tabIndicatorColor">@color/linhaLogin</item>
         <item name="tabTextAppearance">@style/MyCustomTabText</item>
@@ -32,6 +33,7 @@
     </style>
 
     //Form
+
     <style name="MyCustomLabelText" parent="TextAppearance.AppCompat">
         <!--<item name="android:textSize">14sp</item>-->
         <item name="android:textColor">@android:color/black</item>
@@ -51,11 +53,13 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     //chexbox
+
     <style name="MyCheckBox" parent="Theme.AppCompat.Light">
         <item name="colorControlNormal">@android:color/black</item>
         <item name="colorControlActivated">@color/colorAccent</item>
     </style>
     //Spinner
+
     <style name="MyItemSpinner" parent="android:Widget.TextView.SpinnerItem">
         <item name="android:textColor">@android:color/black</item>
 
@@ -64,6 +68,7 @@
     <style name="MyDropDownItemSpinner" parent="android:TextAppearance.Widget.TextView.SpinnerItem">
         <item name="android:textColor">@android:color/black</item>
     </style>
+
     <style name="MyCustomDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:windowBackground">@drawable/dialog_bg</item>
         <item name="colorAccent">@color/btnwifi</item>

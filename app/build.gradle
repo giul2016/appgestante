@@ -45,5 +45,6 @@ dependencies {
 
     //Optional: see how to use the utility.
     compile 'com.ogaclejapan.smarttablayout:utils-v4:1.6.1@aar'
+    implementation 'com.android.support:gridlayout-v7:25.4.0'
 }
 apply plugin: 'com.google.gms.google-services'

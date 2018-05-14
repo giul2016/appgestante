@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.example.italo.gestante.config.ConfigFireBase;
+import com.example.italo.gestante.model.GestanteUser;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,7 +32,6 @@ public class UsuarioFireBase {
     //recuperando so o nome
 
     public  static  boolean atualizarNomeUser(String nomeC){
-    //(String nomeC, String dataNAsc,String sexo,String idade,String sangue, String celular)
 
         try {
             FirebaseUser user = getUserAtual();
@@ -57,7 +57,6 @@ public class UsuarioFireBase {
     public  static  boolean atualizarFotoUser (Uri url){
 
        try {
-
            FirebaseUser user = getUserAtual();
            UserProfileChangeRequest profile = new UserProfileChangeRequest.Builder().setPhotoUri(url).build();
            user.updateProfile(profile).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -75,4 +74,20 @@ public class UsuarioFireBase {
            return false;
        }
     }
+
+
+    public  static GestanteUser getDadosUserLogado(){
+        FirebaseUser fireBaseUser = getUserAtual();
+        GestanteUser dadosGestante = new GestanteUser();
+        dadosGestante.setEmail(fireBaseUser.getEmail());
+        dadosGestante.setNomeC(fireBaseUser.getDisplayName());
+
+        if(fireBaseUser.getPhotoUrl() == null){
+            dadosGestante.setFoto("");
+        }else {
+            dadosGestante.setFoto(fireBaseUser.getPhotoUrl().toString());
+        }
+        return dadosGestante;
+    }
+
 }

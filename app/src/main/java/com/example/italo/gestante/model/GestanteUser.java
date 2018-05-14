@@ -4,6 +4,8 @@ import android.util.Log;
 
 import com.example.italo.gestante.config.ConfigFireBase;
 import com.example.italo.gestante.helper.UsuarioFireBase;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -11,6 +13,9 @@ import com.google.firebase.database.Exclude;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by italo on 04/01/2018.
@@ -26,6 +31,10 @@ public class GestanteUser {
     private String celular;
     private String email;
     private String senha;
+    private String foto;
+    private String dataNascimentoBB;
+
+
 
     public GestanteUser(){
 
@@ -35,6 +44,35 @@ public class GestanteUser {
         DatabaseReference referenciaFireBase = ConfigFireBase.getFirebase();
         DatabaseReference user = referenciaFireBase.child("usuarios").child(getId());
         user.setValue(this);
+    }
+
+
+    public void updadteDadosFireBase() {
+
+        String identificadorUser = UsuarioFireBase.getIdentificadorUsuario();
+        DatabaseReference database = ConfigFireBase.getFirebase();
+        DatabaseReference userRef =database.child("usuarios")
+                .child(identificadorUser);
+
+        Map<String, Object> valoruser = convertParaMap();
+
+        userRef.updateChildren(valoruser);
+
+
+    }
+
+    @Exclude
+    public Map<String,Object> convertParaMap(){
+        HashMap<String, Object> userMAp = new HashMap<>();
+        //configurando usuario map
+        userMAp.put("celular",getCelular());
+        userMAp.put("idade",getIdade());
+        userMAp.put("dataNAsc",getDataNAsc());
+        userMAp.put("nomeC",getNomeC());
+        userMAp.put("foto", getFoto());
+        userMAp.put("ciclo",getDataNascimentoBB());
+
+        return userMAp;
     }
 
 
@@ -109,5 +147,20 @@ public class GestanteUser {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    public String getDataNascimentoBB() {
+        return dataNascimentoBB;
+    }
+
+    public void setDataNascimentoBB(String dataNascimentoBB) {
+        this.dataNascimentoBB = dataNascimentoBB;
     }
 }
